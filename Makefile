@@ -25,4 +25,9 @@ DEVELHELP ?= 1
 # Change this to 0 show compiler invocation lines by default:
 QUIET ?= 1
 
+EVENT_QUEUE_SIZE?=20
+REACTION_QUEUE_SIZE?=20
+
+
 include $(REACTOR_UC_PATH)/make/riot/riot-lfc.mk
+

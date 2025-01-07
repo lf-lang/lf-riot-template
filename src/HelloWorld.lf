@@ -1,11 +1,26 @@
 target uC {
-    timeout: 3 sec
+  platform: RIOT
 }
 
+preamble {=
+  #include "led.h"
+=}
+
 main reactor {
-    timer t(0, 1 sec)
-    reaction(t) {=
-        printf("Hello World from R2\n");
+    timer t1(0, 500msec)
+    timer t2(0, 2sec)
+    
+    reaction(startup) {=
+        LED0_ON;
+        LED1_ON;
+    =}
+
+    reaction(t1) {=
+        LED0_TOGGLE;
+    =}
+
+    reaction(t2) {=
+        LED1_TOGGLE;
     =}
 }
 
