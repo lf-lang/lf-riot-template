@@ -1,13 +1,11 @@
-target uC {
-  platform: RIOT
-}
+target uC
 
 preamble {=
   #include "led.h"
 =}
 
 main reactor {
-    timer t1(0, 500msec)
+    timer t1(0, 1300msec)
     timer t2(0, 2sec)
     
     reaction(startup) {=
