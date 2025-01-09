@@ -88,7 +88,7 @@ LF_MAIN ?= HelloWorld
 BOARD ?= native
 ```
 
-Setting `BOARD` to `native` should result in an executable that runs in your laptop (**NOTE:** This does not currently work, so you have to specify a board).  To specify, for example, the ST `nucleo-f446re`, you would write:
+Setting `BOARD` to `native` should result in an executable that runs in your development machine, **but only if it is a Linux machine** (on other platforms, the generated code will fail to compile).  To specify, for example, the ST `nucleo-f446re`, you would write:
 
 ```Makefile
 BOARD ?= nucleo-f446re
