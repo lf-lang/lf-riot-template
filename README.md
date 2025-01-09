@@ -1,17 +1,17 @@
-This is a template for Lingua Franca applications targeting RIoT OS on embedded boards. It is currently configured to support ARM-based boards.
+This is a template for Lingua Franca applications targeting RIOT OS on embedded boards. It is currently configured to support ARM-based boards.
 
 Outline of these setup instructions:
 
 [toc]
 
-If you have trouble, please refer to the platform-specific hints above.
+If you have trouble, please refer to the platform-specific hints towards the end of these instructions.
 
 ## 1. Basic Prerequisites
 
 Your system must have the following software packages (you likely have at least some of these already):
 
  - `git` — [a distributed version control system](https://git-scm.com/)
- - `make` — Need at least version 4.0 for RIoT (see [macOS Hints](#macos-hints))
+ - `make` — Need at least version 4.0 for RIOT (see [macOS Hints](#macos-hints))
  - `java` — [Java 17](https://openjdk.org/projects/jdk/17)
  - `nix` — [a purely functional package manager](https://nix.dev/tutorials/install-nix)
 
@@ -48,9 +48,9 @@ export REACTOR_UC_PATH=./reactor-uc
 
 You may wish to put this definition (with a fully-qualified path) in your `~/.bash_profile` file or the configuration file for whatever shell you use.
 
-## 3. Install a cross compiler for your board
+## 3. Install a cross-compiler for your board
 
-The template repo includes support for using the [nix](https://nix.dev) package manager to handle the installation. Currently, it is set up to support ARM-based boards using the `arm-none-eabi-gcc` cross compiler.  You can check whether you have this already installed with:
+The template repo includes support for using the [nix](https://nix.dev) package manager to handle the installation. Currently, it is set up to support ARM-based boards using the `arm-none-eabi-gcc` cross-compiler.  You can check whether you have this already installed with:
 
 ```
 which arm-none-eabi-gcc
@@ -62,7 +62,7 @@ To install it:
 nix develop
 ```
 
-This will create a new shell, within which the cross compiler is available.
+This will create a new shell, within which the cross-compiler is available.
 **IMPORTANT**: Remember to re-run `nix develop` when you return to your project in a new shell.
 
 ## 4. Create a repository using this repo as the template
@@ -71,7 +71,7 @@ On GitHub, [create a repository](https://docs.github.com/en/repositories/creatin
 Then clone this repo onto your development machine.
 This will be your workspace for developing Lingua Franca programs.
 
-To get the RIoT support, in the root directory of your new repository, do this:
+The RIOT OS sources are provided as a submodule of the new repository, to fetch them do:
 
 ```bash
 git submodule update --init --recursive
@@ -100,7 +100,7 @@ Alternatively, you can override the board on the command line. For example:
 make BOARD=nucleo-f446re all
 ```
 
-See [boards supported by RIoT](https://www.riot-os.org/boards.html).
+See [boards supported by RIOT](https://www.riot-os.org/boards.html).
 
 ## 6. Build
 
