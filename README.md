@@ -32,38 +32,40 @@ curl -L https://nixos.org/nix/install | sh
 Note that `make` will be installed as `gmake` (see [macOS Hints](#macos-hints)), so all commands below should use `gmake` instead of `make`.
 
 ## 2. Micro C Target for Lingua Franca
+This template uses [reactor-uc](https://github.com/lf-lang/reactor-uc), the "micro C" target for Lingua Franca. Clone this repo with one of the following:
 
-This template uses [reactor-uc](https://github.com/lf-lang/reactor-uc), the "micro C" target for Lingua Franca. Clone that repo using one of the following:
-
-```bash
-git clone https://github.com/lf-lang/reactor-uc.git
-git clone git@github.com:lf-lang/reactor-uc.git
+```bash 
+git clone https://github.com/lf-lang/reactor-uc.git --recurse-submodules
+# or 
+git clone git@github.com:lf-lang/reactor-uc.git --recurse-submodules
 ```
-
-To let the makefiles find this:
-
-```bash
-export REACTOR_UC_PATH=./reactor-uc
-```
-
-You may wish to put this definition (with a fully-qualified path) in your `~/.bash_profile` file or the configuration file for whatever shell you use.
 
 ## 3. Install a cross-compiler for your board
 
-The template repo includes support for using the [nix](https://nix.dev) package manager to handle the installation. Currently, it is set up to support ARM-based boards using the `arm-none-eabi-gcc` cross-compiler.  You can check whether you have this already installed with:
+This README only covers arm-based boards. For boards having a CPU with different architecture, please check which cross-compilers are available for your operating system.
 
-```
-which arm-none-eabi-gcc
+A quick way to check if you already have an arm cross-compiler installed:
+```bash which arm-none-eabi-gcc
 ```
 
-To install it:
+## 3.1. Debian & Ubuntu
 
+```bash
+sudo apt install gcc-arm-none-eabi openjdk-17-jdk-headless build-essential python3 sudo pip install pyserial
 ```
+
+## 3.2. Nix
+
+The template repo includes support for using the [nix](https://nix.dev) package manager to perform the installation. It is currently set to support ARM-based boards that use the `arm-none-eabi-gcc` cross-compiler.
+
+The following command creates a shell environment in which all necessary dependencies are installed.
+
+```bash 
 nix develop
 ```
 
-This will create a new shell, within which the cross-compiler is available.
-**IMPORTANT**: Remember to re-run `nix develop` when you return to your project in a new shell.
+This creates a new shell in which the cross-compiler is available.
+**IMPORTANT**: Don't forget to run ``nix develop`` again when you return to your project in a new shell.
 
 ## 4. Create a repository using this repo as the template
 
@@ -76,7 +78,6 @@ The RIOT OS sources are provided as a submodule of the new repository, to fetch 
 ```bash
 git submodule update --init --recursive
 ```
-
 
 ## 5. Configure the Makefile
 
