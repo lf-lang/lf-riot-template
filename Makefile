@@ -8,6 +8,11 @@ LF_MAIN ?= HelloWorld
 # Make default debug output report only info and errors.
 CFLAGS += -DLF_LOG_LEVEL_ALL=LF_LOG_LEVEL_ERR
 
+# Delete src-gen folder if build target is "clean"
+ifeq ($(MAKECMDGOALS),clean)
+  _ :=  $(shell rm -rf src-gen)
+endif
+
 # Execute the LF compiler if build target is "all"
 ifeq ($(MAKECMDGOALS),all)
   _ :=  $(shell $(REACTOR_UC_PATH)/lfc/bin/lfc-dev src/$(LF_MAIN).lf)
